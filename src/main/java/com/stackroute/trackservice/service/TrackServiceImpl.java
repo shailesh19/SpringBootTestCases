@@ -12,11 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Implements TrackService to provide basic insert, delete, get operations on Tracks
- */
 @Service
-//serves to create beans of only activated profiles but whereas in @Primary and @Qualifier tells to use the respective beans
 @Profile("MainService")
 public class TrackServiceImpl implements TrackService {
     TrackRepository trackRepository;
@@ -28,12 +24,7 @@ public class TrackServiceImpl implements TrackService {
         this.trackRepository = trackRepository;
     }
 
-    /**
-     * Insert track into the database.
-     *
-     * @Input Track to be inserted in the database
-     * @Output Track created after inserting into the database.
-     */
+
     @Override
     public Track saveTrack(Track track) throws TrackAlreadyExistsException {
         if (trackRepository.existsById(track.getTrackId())) {
@@ -45,17 +36,11 @@ public class TrackServiceImpl implements TrackService {
 
     }
 
-    /**
-     * Finds the track in the database using the trackId.
-     *
-     * @Input ID of the track to get from database
-     * @Output Track object
-     */
     @Override
     public Track getTrackById(int id) throws TrackNotFoundException {
         Track foundTrack = null;
         if (!trackRepository.existsById(id)) {
-            throw new TrackNotFoundException("Track you searched for, Is not available");
+            throw new TrackNotFoundException("Track not available");
         } else {
             foundTrack = trackRepository.findById(id).get();
             if (foundTrack == null) {
@@ -65,19 +50,10 @@ public class TrackServiceImpl implements TrackService {
         return foundTrack;
     }
 
-
-    /**
-     * First checks the track is present in the database and stores in a Optional.
-     * If the track is present then deletes the track in the database and return the track
-     * else return null.
-     *
-     * @Input Id of the track to be deleted.
-     * @Output Track if deleted or null if the track is not found in the database.
-     */
     @Override
     public Optional<Track> deleteTrackById(int id) throws TrackNotFoundException {
         if (!trackRepository.existsById(id)) {
-            throw new TrackNotFoundException("Track you want to delete, Does not exist");
+            throw new TrackNotFoundException("Track does not exist");
         }
         Optional<Track> optionalTrack = trackRepository.findById(id);
         trackRepository.delete(optionalTrack.get());
@@ -85,11 +61,6 @@ public class TrackServiceImpl implements TrackService {
 
     }
 
-    /**
-     * Returns all the tracks in the database.
-     *
-     * @Output List of Tracks as List<Track>
-     */
     @Override
     public List<Track> getAllTracks() throws Exception {
         if (trackRepository.findAll().isEmpty()) {
@@ -99,13 +70,6 @@ public class TrackServiceImpl implements TrackService {
 
     }
 
-    /**
-     * Finds the Track by Id as a reference and updated it's fields and save's it.
-     *
-     * @Input Id of the track to be updated
-     * @Input Track object containing the updated details
-     * @Output Updated track.
-     */
     @Override
     public Track updateTrack(Track trackToUpdate) throws TrackNotFoundException {
         if (trackRepository.existsById(trackToUpdate.getTrackId())) {
@@ -130,7 +94,6 @@ public class TrackServiceImpl implements TrackService {
         }
 
         return foundTracks;
-
 }
 
- }
+}
