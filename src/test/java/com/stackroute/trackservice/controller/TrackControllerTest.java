@@ -96,7 +96,7 @@ public class TrackControllerTest {
     }
 
     @Test
-    public void givenTrackIdShoulReturnDeletedTrack() throws Exception {
+    public void givenTrackIdShouldReturnDeletedTrack() throws Exception {
         when(trackService.deleteTrackById(anyInt())).thenReturn(Optional.of(track));
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/track?id=20")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -104,14 +104,6 @@ public class TrackControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-    @Test
-    public void givenTrackIdShouldReturnTrackNotFoundException() throws Exception {
-        when(trackService.deleteTrackById(anyInt())).thenThrow(TrackNotFoundException.class);
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/track/116")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isNotFound())
-                .andDo(MockMvcResultHandlers.print());
-    }
 
     @Test
     public void givenTrackShouldReturnUpdatedTrack() throws Exception {
