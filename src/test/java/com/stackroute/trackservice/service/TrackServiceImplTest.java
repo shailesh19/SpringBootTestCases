@@ -25,10 +25,10 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class TrackServiceImplTest {
     private Track track;
-    //Create a mock for UserRepository
+    //Creates a mock repository for UserRepository
     @Mock
     private TrackRepository trackRepository;
-    //Inject the mocks as dependencies into TrackServiceImpl
+    //Injects the mocks as dependencies into TrackServiceImpl class
     @InjectMocks
     private TrackServiceImpl trackService;
     private List<Track> list;
