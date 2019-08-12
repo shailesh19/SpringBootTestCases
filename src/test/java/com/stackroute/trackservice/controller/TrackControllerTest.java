@@ -78,7 +78,7 @@ public class TrackControllerTest {
     }
 
     @Test
-    public void givenMethodShouldReturnAllTracksDetails() throws Exception {
+    public void givenInputShouldReturnAllTracksDetails() throws Exception {
         when(trackService.getAllTracks()).thenReturn(list);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track")
                 .contentType(MediaType.APPLICATION_JSON))
