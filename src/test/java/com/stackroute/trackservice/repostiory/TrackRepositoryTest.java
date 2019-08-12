@@ -56,7 +56,7 @@ public class TrackRepositoryTest {
     public void givenTrackIdShouldReturnSaveTrackFailure() {
         Track testTrack = new Track(189, "Wow", "Fav");
         trackRepository.save(testTrack);
-        Track fetchTrack = trackRepository.findById(track.getTrackId()).get();
+        Track fetchTrack = trackRepository.findById(testTrack.getTrackId()).get();
         Assert.assertNotSame(testTrack, fetchTrack);
     }
 
@@ -94,6 +94,7 @@ public class TrackRepositoryTest {
         Track foundTrack = trackRepository.save(trackToUpdate);
         Assert.assertEquals(expected, foundTrack);
     }
+
 }
 
 
