@@ -70,7 +70,6 @@ public class TrackServiceImplTest {
     @Test
     public void givenInputShouldReturnAllTracks() throws Exception {
         trackRepository.save(track);
-        //stubbing the mock to return specific data
         when(trackRepository.findAll()).thenReturn(list);
         List<Track> tracklist = trackService.getAllTracks();
         Assert.assertEquals(list, tracklist);
