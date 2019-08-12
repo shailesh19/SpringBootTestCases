@@ -7,10 +7,6 @@ import com.stackroute.trackservice.exceptions.TrackNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * TrackService Interface provides method declarations for all the operations supported
- * in the application.
- */
 public interface TrackService {
     public Track saveTrack(Track track) throws TrackAlreadyExistsException;
     public Track getTrackById(int id) throws TrackNotFoundException;
