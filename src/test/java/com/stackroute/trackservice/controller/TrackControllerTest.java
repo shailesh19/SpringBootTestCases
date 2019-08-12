@@ -78,7 +78,8 @@ public class TrackControllerTest {
     }
 
     @Test
-    public void MethodShouldReturnAllTracks() throws Exception {
+    public void givenMethodShouldReturnAllTracksDetails() throws Exception
+    {
         when(trackService.getAllTracks()).thenReturn(list);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -86,10 +87,9 @@ public class TrackControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-//    Test for getTrackById()
     @Test
-    public void givenTrackIdShouldReturnFoundTrackOfThatId() throws Exception {
-
+    public void givenTrackIdShouldReturnCorrespondingTrack() throws Exception
+    {
         when(trackService.getTrackById(anyInt())).thenReturn(track);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track/{id}")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -97,9 +97,9 @@ public class TrackControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-//    Test for deleteTrack()
     @Test
-    public void givenTrackIdShouldDeleteTrackAndReturnDeletedTrack() throws Exception {
+    public void givenTrackIdShoulReturnDeletedTrack() throws Exception
+    {
         when(trackService.deleteTrackById(anyInt())).thenReturn(Optional.of(track));
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/track?id=20")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -107,9 +107,9 @@ public class TrackControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-//    Test for deleteTrackFailure
     @Test
-    public void givenTrackIdShouldReturnTrackNotFoundException() throws Exception {
+    public void givenTrackIdShouldReturnTrackNotFoundException() throws Exception
+    {
         when(trackService.deleteTrackById(anyInt())).thenThrow(TrackNotFoundException.class);
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/track/116")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -117,36 +117,34 @@ public class TrackControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-
-//    Test for updateTrack()
     @Test
-    public void givenTrackShouldReturnUpdatedTrack() throws Exception {
+    public void givenTrackShouldReturnUpdatedTrack() throws Exception
+    {
         when(trackService.updateTrack(any())).thenReturn(track);
         mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/track")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
-
     }
 
-//    Test for updateTrackFailure
     @Test
-    public void givenTrackShouldReturnTrackNotFoundException() throws Exception {
+    public void givenTrackShouldReturnTrackNotFoundException() throws Exception
+    {
         when(trackService.updateTrack(any())).thenThrow(TrackNotFoundException.class);
         mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/track")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andDo(MockMvcResultHandlers.print());
-
     }
 
-
-
-
-    private static String asJsonString(final Object obj) {
-        try {
+    private static String asJsonString(final Object obj)
+    {
+        try
+        {
             return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             throw new RuntimeException(e);
         }
     }
