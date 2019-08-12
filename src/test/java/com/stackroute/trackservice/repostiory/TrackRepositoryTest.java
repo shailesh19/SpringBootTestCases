@@ -30,12 +30,12 @@ public class TrackRepositoryTest {
     public void setUp() {
         track = new Track();
         track.setTrackId(10);
-        track.setTrackName("John");
-        track.setComments("test1");
+        track.setTrackName("Hello");
+        track.setComments("Hi");
         trackToUpdate = new Track();
-        trackToUpdate.setTrackId(10);
-        trackToUpdate.setTrackName("Johnson");
-        trackToUpdate.setComments("testupdate");
+        trackToUpdate.setTrackId(3453);
+        trackToUpdate.setTrackName("Hey");
+        trackToUpdate.setComments("Ola");
     }
 
     @After
