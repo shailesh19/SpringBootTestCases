@@ -28,7 +28,7 @@ public class TrackServiceImpl implements TrackService {
     @Override
     public Track saveTrack(Track track) throws TrackAlreadyExistsException {
         if (trackRepository.existsById(track.getTrackId())) {
-            throw new TrackAlreadyExistsException("Track with Same ID already exists!");
+            throw new TrackAlreadyExistsException("Track already exists!");
         } else {
             return trackRepository.save(track);
 
