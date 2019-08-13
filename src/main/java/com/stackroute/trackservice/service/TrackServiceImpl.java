@@ -90,7 +90,7 @@ public class TrackServiceImpl implements TrackService {
 
         List<Track> foundTracks = trackRepository.findBy(trackname);
         if (foundTracks.isEmpty()) {
-            throw new TrackNotFoundException("No Track exists");
+            throw new TrackNotFoundException("Track doest not exist");
         }
 
         return foundTracks;
