@@ -16,9 +16,5 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2);
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("com.stackroute.trackservice.controller"))
-//                .paths(regex("/api/vi.*"))
-//                .build();
     }
 }
